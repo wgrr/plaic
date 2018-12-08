@@ -1,17 +1,26 @@
 /* TODO(wgr): describe */
-MEMORY {
+MEMORY
+{
 	RAM : ORIGIN = 0x100000, LENGTH = 63M
 }
 
-SECTIONS {
+PHDRS
+{
+	hdr	PT_LOAD FLAGS(4);
+	text	PT_LOAD FLAGS(5);
+	data	PT_LOAD FLAGS(6);
+}
+
+SECTIONS
+{
 	/* TODO(wgr): plumb to ref docs */
 	.text  : {
 		*(.text)
-	} > RAM
+	} > RAM : text
 	.data : {
 		*(.data)
-	} > RAM
+	} > RAM : data
 	.bss : {
 		*(.bss)
-	} > RAM
+	} > RAM : data
 }

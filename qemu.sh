@@ -5,8 +5,10 @@ CDROOT=$TMP/cdroot
 
 mkdir -p $CDROOT/boot/grub
 cp kern $CDROOT/boot
-echo -n 'set timeout=1 menuentry "kern" --class os { multiboot (hd96)/boot/kern }'\
-> $CDROOT/boot/grub/grub.cfg
+echo -n 'set timeout=1
+menuentry "kern" --class os {
+	multiboot (hd96)/boot/kern
+}' > $CDROOT/boot/grub/grub.cfg
 
 grub-mkrescue -o $TMP/g.iso $CDROOT
 
