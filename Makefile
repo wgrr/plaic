@@ -4,7 +4,7 @@ CFLAGS = -std=c99 -pedantic \
 		-O2 -g \
 		-ffreestanding -fno-strict-aliasing \
 		${CPPFLAGS}
-LDFLAGS = -nostdlib
+LDFLAGS = -nostdlib -Xlinker -T kern.lds
 
 SRC = kern.c
 OBJ = ${SRC:.c=.o}
