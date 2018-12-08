@@ -14,6 +14,9 @@ PHDRS
 SECTIONS
 {
 	/* TODO(wgr): plumb to ref docs */
+	.hdr : {
+		*(.hdr)
+	} > RAM : hdr
 	.text  : {
 		*(.text)
 	} > RAM : text
@@ -23,4 +26,8 @@ SECTIONS
 	.bss : {
 		*(.bss)
 	} > RAM : data
+	/* discard debug section */
+	/DISCARD/ : {
+		*(.eh_frame)
+	}
 }

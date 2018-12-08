@@ -20,7 +20,7 @@ all: kern
 	cc -c ${CFLAGS} $<
 
 kern: ${OBJ}
-	${CC} -o $@ ${OBJ} ${LDFLAGS}
+	cc -o $@ ${OBJ} ${LDFLAGS}
 
 clean:
 	rm -f kern ${OBJ}
