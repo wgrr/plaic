@@ -12,7 +12,7 @@ menuentry "kern" --class os {
 
 grub-mkrescue -o $TMP/g.iso $CDROOT
 
-qemu-system-x86_64 -enable-kvm -ctrl-grab -gdb tcp::1234 -m 64 -monitor stdio\
+qemu-system-i386 -enable-kvm -gdb tcp::1234 -m 64 -monitor stdio\
 					-cdrom $TMP/g.iso -boot d
 
 rm -rf $TMP
