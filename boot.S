@@ -13,6 +13,7 @@
 .int BOOT_FLAGS
 .int -(BOOT_FLAGS+0x1BADB002)
 
+.global print
 .section .text, "ax"
 
 _start:
@@ -22,3 +23,10 @@ _start:
 	mov $stack, %esp
 	add $_STACKSIZE, %esp
 	jmp main
+
+/* bad, move to C, atm it's messing with stack frame for some reason */
+print:
+	movzwl 0xb8000, %eax
+	or     $0x761, %ax
+	mov    %ax,0xb8000
+	ret
