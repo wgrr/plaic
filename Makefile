@@ -1,5 +1,7 @@
 CPPFLAGS = -D_DEFAULT_SOURCE -D_BSD_SOURCE -D_POSIX_C_SOURCE=2 \
-			-nostdinc
+			-nostdinc \
+			-I./include -I/usr/lib/gcc/x86_64-linux-gnu/6/include
+# hack gcc, it's not compliant with free standing.
 CFLAGS =  -std=c99 -pedantic \
 		-O2 -g -m32 \
 		-ffreestanding -fno-strict-aliasing \

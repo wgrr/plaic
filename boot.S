@@ -1,3 +1,4 @@
+#include <defs.h>
 .section .hdr, "a"
 .code32
 
@@ -11,3 +12,13 @@
 .int 0x1BADB002
 .int BOOT_FLAGS
 .int -(BOOT_FLAGS+0x1BADB002)
+
+.section .text, "ax"
+
+_start:
+	cmp $0x2badb002, %eax
+	/* maybe instead of looping forever, should print something */
+	jnz .
+	mov $stack, %esp
+	add $_STACKSIZE, %esp
+	jmp main

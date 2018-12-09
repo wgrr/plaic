@@ -1,5 +1,9 @@
-void _start(void);
+#include <u.h>
+#include <defs.h>
 
-void _start(void) {
+/* TODO(wgr): get rid of these gcc extensions */
+uint8 stack[_STACKSIZE] __attribute__ ((aligned (4)));
+
+void main(void) {
 	for(;;){}
 }
