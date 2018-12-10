@@ -1,0 +1,1 @@
+the stack frame is setted wrongly, it is only working atm because compiler is inilning main() function calls
