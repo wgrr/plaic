@@ -1,7 +1,7 @@
 /* TODO(wgr): describe */
 MEMORY
 {
-	RAM : ORIGIN = 0x100000, LENGTH = 63M
+	RAM : ORIGIN = 1M, LENGTH = 63M
 }
 
 PHDRS
