@@ -1,4 +1,3 @@
-/* TODO(wgr): describe */
 MEMORY
 {
 	RAM : ORIGIN = 1M, LENGTH = 63M
@@ -6,27 +5,29 @@ MEMORY
 
 PHDRS
 {
-	hdr	PT_LOAD FLAGS(4);
-	text	PT_LOAD FLAGS(5);
-	data	PT_LOAD FLAGS(6);
+	hdr PT_LOAD FLAGS(4);
+	text PT_LOAD FLAGS(5);
+	data PT_LOAD FLAGS(6);
 }
 
 SECTIONS
 {
-	/* TODO(wgr): plumb to ref docs */
 	.hdr : {
 		*(.hdr)
 	} > RAM : hdr
-	.text  : {
+
+	.text : {
 		*(.text)
 	} > RAM : text
+
 	.data : {
 		*(.data)
 	} > RAM : data
+
 	.bss : {
 		*(.bss)
 	} > RAM : data
-	/* discard debug section */
+
 	/DISCARD/ : {
 		*(.eh_frame)
 	}
