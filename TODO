@@ -1,2 +1,2 @@
 all shell scritps should be rewritten to use rc shell instead
-Makefile should be rewritten to use mk
+build system should be rewritten to use mk
