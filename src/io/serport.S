@@ -5,4 +5,5 @@
 serport_write:
 	mov 8(%esp), %eax
 	mov 4(%esp), %edx
-	out 
+	out %al, %dx
+	jmp .

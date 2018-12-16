@@ -13,7 +13,7 @@ CPPFLAGS=-nostdinc
 CFLAGS='-c -Og -g -m32 -ffreestanding -fno-strict-aliasing '$CPPFLAGS
 LDFLAGS='
 -melf_i386 -static -nostdlib
--T src/kern2.lds --build-id=none -o bin/kern
+-T src/script.ld --build-id=none -o bin/kern
 '
 
 if [ "$1" = "clean" ]; then
