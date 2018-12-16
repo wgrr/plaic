@@ -1,16 +1,19 @@
 #!/bin/bash
 
+CC=clang
+
 SRC=\
 '
+src/io/uart.c
 src/kern.c
 src/boot.S
 src/io/serport.S
 '
 
-OBJ='obj/boot.o obj/kern.o'
+OBJ='obj/boot.o obj/kern.o obj/io/serport.o obj/io/uart.o'
 
 CPPFLAGS=-nostdinc
-CFLAGS='-c -Og -g -m32 -ffreestanding -fno-strict-aliasing '$CPPFLAGS
+CFLAGS='-no-integrated-as -c -O0 -g -m32 -ffreestanding -fno-strict-aliasing '$CPPFLAGS
 LDFLAGS='
 -melf_i386 -static -nostdlib
 -T src/script.ld --build-id=none -o bin/kern
@@ -23,10 +26,9 @@ if [ "$1" = "clean" ]; then
 fi
 
 for s in $SRC; do
-	echo 'cc' $CFLAGS -o obj/`echo $s|sed "s/src\///g"|sed "s/[\.c|\.S]//g"`.o $s
-	cc $CFLAGS -o obj/`echo $s|sed "s/src\///g"|sed "s/[\.c|\.S]//g"`.o $s || exit 1
+	echo $CC $CFLAGS -o obj/`echo $s|sed "s/src\///g"|sed "s/[\.c|\.S]//g"`.o $s
+	$CC $CFLAGS -o obj/`echo $s|sed "s/src\///g"|sed "s/[\.c|\.S]//g"`.o $s || exit 1
 done
 
 echo 'ld' $LDFLAGS $OBJ
 ld $LDFLAGS $OBJ || exit 1
-

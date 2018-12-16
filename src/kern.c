@@ -67,10 +67,19 @@ void print(char *s, int color){
 }
 
 char stack[4096];
+extern void uart·init(void);
+extern void uart·write(unsigned char b);
 
 void main(void){
 	char b[13];
+	char hello[] = {'H', 'e', 'l', 'l', 'o', 0};
+	int i = 0;
+
 	print(itoa(123123, b), 5);
+	memset(b, 0, sizeof b);
+
+	uart·init();
+	while(hello[i]) uart·write(hello[i++]);
 	for(;;);
 }
 

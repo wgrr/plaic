@@ -1,9 +1,9 @@
 .section .text
 
-.globl serport_write
+.globl serport·write
 
-serport_write:
+serport·write:
 	mov 8(%esp), %eax
 	mov 4(%esp), %edx
 	out %al, %dx
-	jmp .
+	ret
