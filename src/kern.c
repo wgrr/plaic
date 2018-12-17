@@ -9,7 +9,7 @@ void swap(char*, char*);
 char *reverse(char*, int, int);
 
 int fib(int n){
-	if (n >= 1) return n*fib(n-1);
+	if(n >= 1) return n*fib(n-1);
 	return 1;
 }
 
@@ -20,13 +20,13 @@ void swap(char *x, char *y){
 }
 
 char* reverse(char *b, int i, int j){
-	while (i<j) swap(&b[i++], &b[j--]);
+	while(i<j) swap(&b[i++], &b[j--]);
 	return b;
 }
 
 int abs(int n){
 	int mask = n >> sizeof(int) * 7;
-	return (n + mask) ^ mask;
+	return(n + mask)^mask;
 }
 
 char* itoa(int v, char* b){
@@ -45,10 +45,10 @@ char* itoa(int v, char* b){
 
 		n /= 10;
 	}
-	if (i == 0)
+	if(i == 0)
 		b[i++] = '0';
 
-	if (v < 0)
+	if(v < 0)
 		b[i++] = '-';
 	b[i] = 0;
 	return reverse(b, 0, i - 1);
