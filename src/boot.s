@@ -12,7 +12,7 @@
 	uint32: checksum
 */
 .int mboot_magik
-.int mboot_flags 
+.int mboot_flags
 .int -(mboot_flags+mboot_magik)
 
 .section .text, "ax"
