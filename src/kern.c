@@ -1,14 +1,14 @@
 #include <u.h>
 #include <uart.h>
 
-int fib(int);
+long fib(int);
 char* itoa(int, char*);
 void print(char*, int);
 void *memset(void*, int, long);
 void swap(char*, char*);
 char *reverse(char*, int, int);
 
-int fib(int n){
+long fib(int n){
 	if(n >= 1) return n*fib(n-1);
 	return 1;
 }

@@ -1,1 +1,1 @@
-void serport·write(unsigned short, unsigned char);
+void serport·write(ushort, uchar);
