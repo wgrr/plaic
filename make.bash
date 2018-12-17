@@ -4,8 +4,8 @@ CC=clang
 
 OBJ=`du -a ./obj | grep '\.o$' | awk '{print $2}'`
 if [ "$1" = "clean" ]; then
-	echo rm -f $OBJ
-	rm -f $OBJ
+	echo rm -f $OBJ bin/kern
+	rm -f $OBJ bin/kern
 	exit 0
 fi
 
