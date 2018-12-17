@@ -1,3 +1,5 @@
+ENTRY(_entry)
+
 MEMORY
 {
 	RAM : ORIGIN = 1M, LENGTH = 63M

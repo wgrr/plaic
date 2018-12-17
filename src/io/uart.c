@@ -1,4 +1,4 @@
-extern void serport·write(unsigned short, unsigned char);
+#include <serport.h>
 
 static int comm = 0x3f8;
 static int regdat = 0;

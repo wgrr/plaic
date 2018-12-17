@@ -1,0 +1,1 @@
+#define BOOT_STACKLEN 4096

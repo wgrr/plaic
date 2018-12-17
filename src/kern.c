@@ -1,3 +1,6 @@
+#include <u.h>
+#include <limits.h>
+
 int fib(int);
 char* itoa(int, char*);
 void print(char*, int);
@@ -65,10 +68,6 @@ void print(char *s, int color){
 		*v++ = color;
 	}
 }
-
-char stack[4096];
-extern void uart·init(void);
-extern void uart·write(unsigned char b);
 
 void main(void){
 	char b[13];
