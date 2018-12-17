@@ -2,15 +2,15 @@
 
 CC=clang
 
-OBJ=`du -a . | grep '.*\.o$' | awk '{print $2}'`
+OBJ=`du -a . | grep '\.o$' | awk '{print $2}'`
 if [ "$1" = "clean" ]; then
 	echo rm -f $OBJ
 	rm -f $OBJ
 	exit 0
 fi
 
-SRC=`du -a . | grep '.*\.c$' | awk '{print $2}'`
-ASM=`du -a . | grep '.*\.s$' | awk '{print $2}'`
+SRC=`du -a . | grep '\.c$' | awk '{print $2}'`
+ASM=`du -a . | grep '\.s$' | awk '{print $2}'`
 
 CPPFLAGS='-nostdinc -I./include'
 CFLAGS='-c -O0 -g -m32 -ffreestanding '$CPPFLAGS
