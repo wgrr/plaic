@@ -1,3 +1,4 @@
+#include <u.h>
 #include <serport.h>
 
 static int comm = 0x3f8;

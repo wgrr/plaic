@@ -1,10 +1,10 @@
 #include <u.h>
-#include <limits.h>
+#include <uart.h>
 
 int fib(int);
 char* itoa(int, char*);
 void print(char*, int);
-void *memset(void*, int, int);
+void *memset(void*, int, long);
 void swap(char*, char*);
 char *reverse(char*, int, int);
 
@@ -54,10 +54,10 @@ char* itoa(int v, char* b){
 	return reverse(b, 0, i - 1);
 }
 
-void* memset(void *src, int v, int n){
+void* memset(void *src, int v, long n){
 	int tmp = n;
 	while(n--)
-		*((unsigned char*)src++) = v;
+		*((uchar*)src++) = v;
 	return src-tmp;
 }
 

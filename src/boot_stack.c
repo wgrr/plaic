@@ -1,4 +1,4 @@
 #include <u.h>
 #include <limits.h>
 
-u8int stack[BOOT_STACKLEN];
+u8int boot·stack[BOOT_STACKLEN];

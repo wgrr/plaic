@@ -17,13 +17,13 @@ CFLAGS='-c -O0 -g -m32 -ffreestanding '$CPPFLAGS
 LDFLAGS='-melf_i386 -static -nostdlib -T src/script.ld --build-id=none -o bin/kern'
 
 for s in $SRC; do
-	echo $CC $CFLAGS -o obj/`echo $s|sed "s/src\///g"|sed "s/[\.c$]//g"`.o $s
-	$CC $CFLAGS -o obj/`echo $s|sed "s/src\///g"|sed "s/[\.c$]//g"`.o $s || exit 1
+	echo $CC $CFLAGS -o obj/`echo $s|sed "s/\.\/src\///g"|sed "s/\.c$/\.o/g"` $s
+	$CC $CFLAGS -o obj/`echo $s|sed "s/\.\/src\///g"|sed "s/\.c$/\.o/g"` $s || exit 1
 done
 
 for s in $ASM; do
-	echo $CC -x assembler-with-cpp -o obj/`echo $s|sed "s/src\///g"|sed "s/[\.s$]//g"`.o $s
-	$CC -o -x=assembler-with-cpp -no-integrated-as obj/`echo $s|sed "s/src\///g"|sed "s/[\.s]//g"`.o $s || exit 1
+	echo $CC -c -m32 -no-integrated-as -x assembler-with-cpp -o obj/`echo $s|sed "s/\.\/src\///g"|sed "s/\.s$/\.o/g"` $s 
+	$CC -c -m32 -no-integrated-as -x assembler-with-cpp -o obj/`echo $s|sed "s/\.\/src\///g"|sed "s/\.s$/\.o/g"` $s || exit 1
 done
 
 echo 'ld' $LDFLAGS $OBJ

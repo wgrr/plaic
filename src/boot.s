@@ -16,10 +16,11 @@
 .int -(mboot_flags+mboot_magik)
 
 .section .text, "ax"
+.globl _entry
 
 _entry:
 	cmp $mboot_chk, %eax
 	jne .
 	mov $boot·stack, %esp
-	add $boot·stacklen, %esp
+	add $BOOT_STACKLEN, %esp
 	jmp main
