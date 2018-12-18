@@ -1,1 +1,2 @@
 #define BOOT_STACKLEN 4096
+#define NCPUIDT 256
