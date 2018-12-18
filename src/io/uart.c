@@ -1,10 +1,12 @@
 #include <u.h>
 #include <serport.h>
 
+static int initialized = 0;
+
 static int comm = 0x3f8;
 static int regdat = 0;
 
-void uart·init(void){
+static void uart·init(void){
 	int clockrate, baudrate, divisor;
 	int stop, parity, regdivl;
 	int reglcr = 3;
@@ -23,6 +25,10 @@ void uart·init(void){
 }
 
 static void uart·write(uchar b){
+	if(!initialized){
+		uart·init();
+		initialized = !initialized;
+	}
 	serport·write(comm+regdat, b);
 }
 
