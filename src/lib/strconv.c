@@ -1,3 +1,5 @@
+#include <u.h>
+
 static void swap(char *x, char *y){
 	char tmp = *x;
 	*x = *y;
@@ -12,6 +14,12 @@ static char* reverse(char *b, int i, int j){
 static int abs(int n){
 	int mask = n >> sizeof(int) * 7;
 	return(n + mask)^mask;
+}
+
+char* strconv·FormatInt(long i, int base){
+	USED(i)
+	USED(base)
+	return "";
 }
 
 char* strconv·Itoa(int i){
@@ -39,10 +47,4 @@ char* strconv·Itoa(int i){
 	return reverse(b, 0, i - 1);
 #endif
 	return strconv·FormatInt(i, 10);
-}
-
-char* strconv·FormatInt(long i, int base){
-	USED(i)
-	USED(base)
-	return ""
 }
