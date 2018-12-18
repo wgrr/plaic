@@ -1,3 +1,2 @@
 void uart·init(void);
-void uart·write(uchar b);
-
+int uart·println(char *str);
