@@ -10,7 +10,6 @@ static void print(char *s, int color){
 }
 
 void main(void){
-	uart·init();
 	uart·println("hello world");
 	for(;;);
 }
