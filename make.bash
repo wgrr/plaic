@@ -2,8 +2,8 @@
 
 CC=clang
 
-OBJ=`du -a ./obj | grep '\.o$' | awk '{print $2}'`
 if [ "$1" = "clean" ]; then
+	OBJ=`du -a ./obj | grep '\.o$' | awk '{print $2}'`
 	echo rm -f $OBJ bin/kern
 	rm -f $OBJ bin/kern
 	exit 0
@@ -26,5 +26,6 @@ for s in $ASM; do
 	$CC -c -m32 -no-integrated-as -x assembler-with-cpp -nostdinc -I./include -o obj/`echo $s|sed "s/\.\/src\///g"|sed "s/\.s$/\.o/g"` $s || exit 1
 done
 
+OBJ=`du -a ./obj | grep '\.o$' | awk '{print $2}'`
 echo 'ld' $LDFLAGS $OBJ
 ld $LDFLAGS $OBJ || exit 1

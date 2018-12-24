@@ -1,0 +1,1 @@
+void cpu·init(void);
