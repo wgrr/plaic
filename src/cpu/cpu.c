@@ -25,7 +25,7 @@ static int initialized = 0;
 // online ref: access: (Tue Dec 18 03:28:57 -02 2018) https://software.intel.com/sites/default/files/managed/39/c5/325462-sdm-vol-1-2abcd-3abcd.pdf#G41.31794
 
 
-static cpuDescSegment cpu_idts[NCPUIDT];
+static cpuDescSegment cpu_idt[NCPUIDT];
 static cpuDescSegment cpu_gdt[GDT_N];
 
 static void init_gdtnil(int i){
@@ -50,16 +50,6 @@ static void init_gdtdata(int i){
 		|CPUSEG_P|CPUSEG_S|CPUSEG_DATARW;
 }
 
-static void init_intr(cpuDescSegment *d, void (*handler)(void)) {
-	d->low = (GDT_CODE << 16) | ((uintptr)handler) & 0xffff;
-	d->high = 0;
-}
-
-static void std_int_handler(void){
-	uart·println("reached");
-	for(;;);
-}
-
 static int get_gdt_by_sel(int sel){
 	// skip the TI and RPL bits, see libcpu.s:10, TODO(wgr): remember to move along when
 	// fix the documentation links
@@ -69,10 +59,10 @@ static int get_gdt_by_sel(int sel){
 	return sel >> 3;
 }
 
-static void init_pseudo_desc(cpuRegSegment *desc, int i){
+static void init_pseudo_desc(cpuRegSegment *desc, void *addr, int i){
 	//TODO(wgr): assert(i < 0x10000);
 	desc->limit = i-1;
-	desc->base = (uintptr)cpu_gdt;
+	desc->base = (uintptr)addr;
 }
 
 static void init_gdt(void){
@@ -80,17 +70,31 @@ static void init_gdt(void){
 	init_gdtnil(get_gdt_by_sel(GDT_NIL));
 	init_gdtcode(get_gdt_by_sel(GDT_CODE));
 	init_gdtdata(get_gdt_by_sel(GDT_DATA));
-	init_pseudo_desc(&desc, sizeof cpu_gdt);
+	init_pseudo_desc(&desc, cpu_gdt, sizeof cpu_gdt);
 	cpu·lgdt(&desc);
 }
 
-static void init_idts(void){
+// TODO(wgr): ref to IDT Gate Descriptors
+static void init_idt_gate(cpuDescSegment *d, void (*handler)(void)) {
+	d->low = (GDT_CODE << 16) | (((uintptr)handler) & 0xffff);
+	d->high = (((uintptr)handler) & 0xffff0000)|CPUSEG_P|0xf00;
+}
+
+static void intr_handler(void){
+	uart·println("reached");
+	for(;;);
+}
+
+static void init_idt(void){
 	int i;
+	cpuRegSegment desc;
 	for(i=0; i<NCPUIDT; i++)
-		;//init_idt(i);
+		init_idt_gate(&cpu_idt[i], &intr_handler);
+	init_pseudo_desc(&desc, cpu_idt, sizeof cpu_idt);
+	cpu·lidt(&desc);
 }
 
 void cpu·init(void){
 	init_gdt();
-	init_idts();
+	init_idt();
 }

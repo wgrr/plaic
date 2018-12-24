@@ -4,6 +4,7 @@
 .globl cpu·setint
 .globl cpu·unusetint
 .globl cpu·can_int
+.globl cpu·lidt
 
 #define CPU_EFLAGS_MASK 0x200
 
@@ -50,4 +51,9 @@ cpu·lgdt:
 	mov %eax, %ss
 	ljmp $(GDT_CODE), $1f
 1:
+	ret
+
+cpu·lidt:
+	mov 4(%esp), %eax
+	lidt (%eax)
 	ret

@@ -15,4 +15,6 @@ u8int cpu·can_int(void);
 void cpu·unusetint(void);
 void cpu·setint(void);
 // load global descriptor table
-void cpu·lgdt(cpuDescSegment *d);
+void cpu·lgdt(cpuRegSegment *d);
+// load interrupt
+void cpu·lidt(cpuRegSegment *d);
