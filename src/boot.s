@@ -1,4 +1,3 @@
-.section .hdr, "a"
 
 #include <limits.h>
 
@@ -11,6 +10,8 @@
 	uint32: flags
 	uint32: checksum
 */
+
+.section .multiboot_hdr, "a"
 .int mboot_magik
 .int mboot_flags
 .int -(mboot_flags+mboot_magik)

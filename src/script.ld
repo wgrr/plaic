@@ -7,16 +7,16 @@ MEMORY
 
 PHDRS
 {
-	hdr PT_LOAD FLAGS(4);
+	multiboot_hdr PT_LOAD FLAGS(4);
 	text PT_LOAD FLAGS(5);
 	data PT_LOAD FLAGS(6);
 }
 
 SECTIONS
 {
-	.hdr : {
-		*(.hdr)
-	} > RAM : hdr
+	.multiboot_hdr : {
+		*(.multiboot_hdr)
+	} > RAM : multiboot_hdr
 
 	.text : {
 		*(.text)
