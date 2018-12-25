@@ -31,6 +31,6 @@ SECTIONS
 	} > RAM : data
 
 	/DISCARD/ : {
-		*(.eh_frame)
+		*(.eh_frame .note.GNU-stack)
 	}
 }
