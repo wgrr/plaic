@@ -6,7 +6,7 @@
 
 #define CPUSEG_DATARW 0x00000200
 #define CPUSEG_CODERX 0x00000900
-#define CPUSEG_S	  0x00001000
+#define CPUSEG_S      0x00001000
 #define CPUSEG_P      0x00008000
 #define CPUSEG_DB     0x00400000
 #define CPUSEG_G      0x00800000
@@ -23,7 +23,6 @@ static int initialized = 0;
 // TODO(wgr): jump to ref file instead of commenting here
 // local ref: file:///usr/wgr/lib/pdf/intel-arch-ref.pdf#G41.31794
 // online ref: access: (Tue Dec 18 03:28:57 -02 2018) https://software.intel.com/sites/default/files/managed/39/c5/325462-sdm-vol-1-2abcd-3abcd.pdf#G41.31794
-
 
 static cpuDescSegment cpu_idt[NCPUIDT];
 static cpuDescSegment cpu_gdt[GDT_N];

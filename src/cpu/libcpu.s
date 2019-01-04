@@ -8,7 +8,7 @@
 
 #define CPU_EFLAGS_MASK 0x200
 
-// gdt indexes, should match cpu.c:/GDT_INDEX
+// gdt indexes must be kept in sync with ./cpu.c:/GDT_INDEX
 
 // skip TI and RPL bits of selector
 // TODO(wgr): jump to ref file instead of commenting here
