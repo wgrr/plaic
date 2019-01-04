@@ -16,6 +16,8 @@ CPPFLAGS='-nostdinc -I./include'
 CFLAGS='-c -O0 -g -m32 -ffreestanding '$CPPFLAGS
 LDFLAGS='-melf_i386 -static -nostdlib -T src/script.ld --build-id=none -o bin/kern '
 
+mkdir -p obj && mkdir -p obj/io && mkdir -p obj/cpu && mkdir -p obj/lib || exit 1;
+
 for s in $SRC; do
 	echo $CC $CFLAGS -o obj/`echo $s|sed "s/\.\/src\///g"|sed "s/\.c$/\.o/g"` $s
 	$CC $CFLAGS -o obj/`echo $s|sed "s/\.\/src\///g"|sed "s/\.c$/\.o/g"` $s || exit 1
